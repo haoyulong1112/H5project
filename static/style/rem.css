@@ -1,0 +1,4 @@
+/* 配合rem布局，指定body最大宽度并居中 */
+html{width:100%;height:100%;}
+body{margin: 0 auto;max-width:640px;height:100%;-webkit-overflow-scrolling:touch;font-size:0.28rem;}
+p,div{margin:0}

@@ -1,0 +1,48 @@
+/* 单行超出省略 */
+ellipsis()
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+// 多行超出省略 已废弃，改用 ellipsis-multi-lineheight
+ellipsis-multi(n)
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: n;
+    overflow: hidden;
+
+// 多行超出省略加行高
+// 已发现ios系统下有bug 需在标签中添加 style="-webkit-box-orient: vertical"
+ellipsis-multi-lineheight(n, l)
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: n;
+    overflow: hidden;
+    line-height: l rem;
+
+// 圆形
+circle(w)
+    width: w rem;
+    height: w rem;
+    border-radius: (w/2) rem;
+
+// 左侧头像昵称 右侧文字 弹性布局
+avatar-name-righttext(w)
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    >div
+        display: flex;
+        align-items: center;
+    > img
+        circle(w);
+
+// 兼容用户端无PingFangSC-Medium字体时加粗
+font-Medium-bold()
+    font-family PingFangSC-Medium
+    font-weight bold
+
+// 弹性滚动盒子
+overflow-auto()
+    -webkit-overflow-scrolling touch
+    overflow auto

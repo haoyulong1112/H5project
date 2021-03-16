@@ -1,0 +1,21 @@
+.DS_Store
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/test/unit/coverage/
+.cache
+sendbuild.sh
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# self config
+rsync.sh
+/static/config/dev.js
+sendbuild.sh

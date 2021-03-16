@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>宠物家</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="edge">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="">
+    <link rel="icon" href="" size="16x16 32x32">
+    <link rel="apple-touch-icon-precomposed" href="" size="114x114">
+    <link rel="stylesheet" href="../../../static/style/normalize.min.css">
+    <link rel="stylesheet" href="../../../static/style/rem.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      var timestamp = new Date().getTime().toString()
+      timestamp = timestamp.substr(0, timestamp.length - 5)
+      document.write('<script src="../../../static/config/index.js?t='+timestamp+'"><\/script>')
+    </script>
+    <script>
+      if (config.vconsole) {
+        document.write('<script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js"><\/script><script>new VConsole();console.log(location.href)<\/script>')
+      }
+    </script>
+    <% var env = ''; if (process.env.NODE_ENV === 'development') { env = '<script src="/static/config/dev.js"><\/script>' } %>
+    <%= env %>
+  </body>
+</html>

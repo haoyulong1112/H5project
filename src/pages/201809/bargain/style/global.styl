@@ -1,0 +1,135 @@
+@import '~@/assets/style/mixins.styl'
+
+#app,.container
+    width 100%
+    height 100%
+    font-family PingFangSC-Regular
+
+.empty
+    padding-top 2rem
+    > img
+        margin 0 auto
+        width 1.33rem
+    > div
+        margin 0.54rem auto 0 auto
+        font-size 0.32rem
+        color #999
+        text-align center
+
+.banner
+    padding 0.3rem 0.2rem 0.3rem 0.2rem
+    background #fff
+.banner-box
+    overflow hidden
+    border-radius 0.2rem
+    box-shadow 0 2px 0.2rem 0 rgba(0,0,0,0.3)
+.banner-swiper-item
+    width 100%
+    border-radius 0.2rem
+// 重置swiper指示器默认样式
+.swiper-pagination-bullet
+    margin 0 0.1rem!important
+    width 0.14rem
+    height 0.14rem
+    border-radius 0.07rem
+    background #eee
+    opacity 1
+.swiper-pagination-bullet-active
+    background #D0021B !important
+.swiper-pagination-bullets
+    bottom 0.2rem
+    text-align center
+
+.global-btn
+    position relative
+    display inline-flex
+    justify-content center
+    align-items center
+    width 1.8rem
+    height 0.6rem
+    background-image linear-gradient(90deg, #D0021B 0%, #EB6340 100%)
+    border-radius 0.3rem
+    font-size 0.28rem
+    color #fff
+    &:before
+        position absolute
+        left 50%
+        bottom 0
+        transform: translateX(-50%)
+        width 72%
+        height 1px
+        content ''
+        box-shadow 0 0 0.1rem 0 #D0021B
+.global-btn.grey
+    background #bbb
+    box-shadow none
+    &:before
+        box-shadow 0 0 0.1rem 0 #bbb
+.global-btn.w433
+    width 4.33rem
+    &:before
+        width 88%
+.global-btn.h68
+    height 0.68rem
+.global-btn.w200
+    width 2rem
+    &:before
+        width 76%
+.global-btn.w156
+    width 1.56rem
+    &:before
+        width 66%
+
+.pet-tool
+    display flex
+    justify-content space-between
+    align-items center
+    height 1rem
+    font-size 0.32rem
+    color #555555
+    background #fff
+    > div:first-of-type
+        display flex
+        align-items center
+        &:before
+            margin -0.05rem 0.1rem 0 0.2rem
+            content ''
+            width 0.6rem
+            height 0.6rem
+            background-size 100%
+    > div:nth-child(2)
+        margin-right 0.2rem
+        display flex
+        justify-content flex-end
+        align-items center
+        font-size 0.28rem
+        > img
+            margin-left 0.2rem
+            width 0.14rem
+
+.pet-tool.red
+    > div:first-of-type
+        &:before
+            margin 0 0.14rem 0 00
+            content ''
+            width 0.06rem
+            height 0.3rem
+            background #D0021B
+.pet-tool.pet
+    > div:first-of-type
+        &:before
+            background-image url('~@static/images/201809/bargain/pet.png')
+.pet-tool.tool
+    > div:first-of-type
+        &:before
+            background-image url('~@static/images/201809/bargain/tool.png')
+
+.font-bold
+    font-Medium-bold()
+.font-red
+    color #D0021B
+
+.mytasklist-statetip span:not(.font-red)
+    font-Medium-bold()
+    font-size 0.36rem
+    color #D0021B

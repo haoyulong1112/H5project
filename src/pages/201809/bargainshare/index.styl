@@ -1,0 +1,490 @@
+@import '~@/assets/style/mixins.styl'
+
+
+.index
+    font-family PingFangSC-Regular
+
+.font-bold
+    font-Medium-bold()
+.font-red
+    color #D0021B
+
+.global-btn
+    position relative
+    width 6rem
+    height 0.9rem
+    line-height 0.9rem
+    background-image linear-gradient(90deg, #D0021B 0%, #EB6340 100%)
+    box-shadow inset 0 -0.08rem 0.02rem 0 rgba(179,0,0,0.50)
+    border-radius 0.45rem
+    text-align center
+    font-size 0.32rem
+    color #fff
+    font-Medium-bold()
+    &:before
+        position absolute
+        left 50%
+        bottom 0
+        transform: translateX(-50%)
+        width 88%
+        height 1px
+        content ''
+        box-shadow 0 0 0.1rem 0 #D0021B
+.global-btn.highlight
+    width 2.9rem
+    background-image linear-gradient(-90deg, #FADC22 0%, #FFDC00 96%)
+    box-shadow inset 0 -0.08rem 0.02rem 0 #FFAE22
+    color #D92228
+    &:before
+        width 77%
+        box-shadow 0 0 0.1rem 0 #FFAE22
+.global-btn.w433
+    width 4.33rem
+    &:before
+        bottom 1px
+        width 80%
+.global-btn.w310
+    width 3.1rem
+    &:before
+        width 77%
+.global-btn.w290
+    width 2.9rem
+    &:before
+        width 77%
+
+
+.global-title
+    display flex
+    justify-content center
+    align-items center
+    height 1.1rem
+    font-size 0.32rem
+    color #333
+    font-Medium-bold()
+    &:before
+        margin-right 0.3rem
+        content ''
+        width 1rem
+        height 0.51rem
+        background-image url('~@static/images/201809/bargainshare/title-left.png')
+        background-size 100%
+    &:after
+        margin-left 0.3rem
+        content ''
+        width 0.75rem
+        height 0.47rem
+        background-image url('~@static/images/201809/bargainshare/title-right.png')
+        background-size 100%
+
+.global-countdown
+    display flex
+    justify-content center
+    align-items center
+    font-size 0.26rem
+    color #666
+    > span
+        display flex
+        justify-content center
+        align-items center
+        width 0.5rem
+        height 0.34rem
+        border-radius 0.04rem
+        background #3A3636
+        color #fff
+    > span:last-of-type
+        margin-right 0.1rem
+
+.popuptip-popup
+    padding 0.5rem 0 0.4rem 0
+    width 5.4rem
+    border-radius 0.2rem
+    background #fff
+.popuptip-title
+    > img
+        margin 0 auto
+        width 0.94rem
+    > div
+        margin-top 0.34rem
+        line-height 0.42rem
+        font-size 0.3rem
+        color #333
+        text-align center
+.popuptip-btn
+    display flex
+    justify-content center
+    margin-top 0.62rem
+
+.popup-clearbtn
+    position relative
+    z-index 10
+    display flex
+    justify-content flex-end
+    margin-bottom 0.3rem
+    > img
+        width 0.43rem
+        height 0.43rem
+
+.rule
+    position absolute
+    right 0
+    top 0.23rem
+    width 1.4rem
+    height 0.5rem
+    line-height 0.5rem
+    border-radius 0.25rem 0 0 0.25rem
+    text-align center
+    background #FCDC19
+    font-size 0.24rem
+    box-shadow 0 0.02rem 0.06rem rgba(83, 0, 0, 0.5)
+
+.content-top > img
+    width 100%
+.content-bottom > img
+    width 100%
+.content-middle
+    padding 0 0.2rem
+    background-image url('http://dev-pet-avatar.oss-cn-beijing.aliyuncs.com/html5/15389658458695105969.png')
+    background-size 100%
+
+.info
+    padding 0.3rem
+    border-radius 0.2rem
+    background #fff
+.info-user
+    display flex
+    align-items center
+    > div:first-of-type > img
+        circle(0.88)
+    > div:last-of-type
+        overflow hidden
+        margin-left 0.2rem
+        line-height 0.45rem
+        font-size 0.32rem
+        > div
+            ellipsis()
+        > div:last-of-type
+            margin-top 0.05rem
+            line-height 0.33rem
+            font-size 0.24rem
+            color #666
+
+.info-task
+    display flex
+    margin-top 0.27rem
+    padding 0.2rem
+    background #F8F1E8
+    border-radius 0.1rem
+    > div:first-of-type > img
+        width 1.5rem
+        height 1.5rem
+        border-radius 0.1rem
+.task-text
+    flex 1
+    display flex
+    flex-direction column
+    justify-content space-between
+    margin-left 0.2rem
+    > div:first-of-type
+        ellipsis-multi-lineheight(2, 0.4)
+        font-size 0.28rem
+    > div:last-of-type
+        display flex
+        justify-content space-between
+        align-items flex-end
+        > div
+            ellipsis()
+.task-price
+    line-height 0.42rem
+    font-size 0.3rem
+.task-count
+    line-height 0.33rem
+    font-size 0.24rem
+    color #d0021b
+
+.info-schedule
+    margin-top 0.3rem
+.info-bargained-tip
+    line-height 0.42rem
+    text-align center
+    font-size 0.3rem
+    color #555
+    > span
+        color #d0021b
+.info-schedule-tip
+    display flex
+    justify-content center
+    align-items center
+    line-height 0.42rem
+    font-size 0.3rem
+    > img
+        width 0.41rem
+        height 0.44rem
+        margin-right 0.15rem
+    > div
+        > span.grey
+            color #666
+        > span.red
+            font-Medium-bold()
+            color #d0021b
+.info-schedule-tip.small
+    margin-top 0.1rem
+    font-size 0.26rem
+    line-height 0.37rem
+    color #666
+    > div
+        > span.grey
+            color #666
+        > span.red
+            font-family PingFangSC-Regular
+            font-weight normal
+            color #666
+// 重置进度条样式
+.mt-progress
+    margin 0.2rem auto 0 auto
+    overflow hidden
+    width 6rem
+.mt-progress-runway
+    background #ddd
+    box-shadow 0 0.02rem 0.04rem 0 rgba(208,2,27,0.10), inset 0 1px 0.04rem 0 rgba(0,0,0,0.24)
+.mt-progress-progress
+    background-image linear-gradient(180deg, #F5515F 0%, #E75060 48%, #D0021B 100%)
+    box-shadow inset 0 1px 0.03rem 0 rgba(151,3,21,0.55)
+.mt-progress,.mt-progress-runway,.mt-progress-progress
+    height 0.14rem!important
+    border-radius 0.07rem!important
+
+.info-tip
+    margin-top 0.3rem
+.info-tip-text
+    display flex
+    justify-content center
+    line-height 0.45rem
+    font-size 0.32rem
+    color #333
+.info-tip-tool
+    margin-top 0.14rem
+    text-align center
+    font-size 0.24rem
+    color #666
+
+.info-btn
+    display flex
+    justify-content center
+    margin-top 0.6rem
+    > div
+        flex-shrink 0
+    > div:nth-child(2)
+        margin-left 0.26rem
+
+.invite
+    border-radius 0.2rem
+    margin-top 0.3rem
+    background #fff
+    > img
+        border-radius 0.2rem
+        width 100%
+
+.record
+    margin-top 0.3rem
+    border-radius 0.2rem
+    color #666
+    background #fff
+.record-list
+    padding 0 0.3rem 0 0.28rem
+    max-height 2.76rem
+    overflow auto
+.record-item
+    display flex
+    justify-content space-between
+    align-items center
+    height 0.92rem
+    box-shadow inset 0 -1px 0 0 #eee
+.record-title
+    display flex
+    align-items center
+    > img
+        margin-right 0.2rem
+        circle(0.68)
+.record-money
+    flex-shrink 0
+    display flex
+    align-items center
+    width 2rem
+    font-size 0.28rem
+    white-space nowrap
+    > img
+        flex-shrink 0
+        margin-right 0.05rem
+        width 0.41rem
+
+.recommanded
+    > div:first-of-type
+        padding-top 0.1rem
+        box-sizing border-box
+        align-items flex-start
+        height 0.9rem
+        background #fff
+.recommanded-list
+    display flex
+    flex-wrap wrap
+    background #f8f8f8
+.recommanded-item
+    margin-bottom 0.1rem
+    width 50%
+    box-sizing border-box
+    > div
+        padding-bottom 0.3rem
+        background #fff
+    &:nth-child(2n)
+        padding-left 0.05rem
+    &:nth-child(2n+1)
+        padding-right 0.05rem
+.recommanded-img
+    margin-bottom 0.17rem
+    > img
+        width 3.7rem
+        height 3.7rem
+.recommanded-title
+    padding 0 0.25rem
+    height 0.6rem
+    ellipsis-multi-lineheight(2, 0.33)
+.recommanded-tag
+    margin-top 0.1rem
+    margin-bottom 0.2rem
+    padding 0 0.25rem
+    height 0.27rem
+    > span
+        padding 0.03rem 0.1rem 0 0.1rem
+        border 1px solid #D0021B
+        border-radius 0.06rem
+        font-size 0.2rem
+        color #D0021B
+.recommanded-price
+    display flex
+    align-items baseline
+    padding 0 0.25rem
+    height 0.31rem
+    font-size 0.24rem
+    color #9b9b9b
+    > div:last-of-type
+        margin-left 0.05rem
+        text-decoration line-through
+    > div:first-of-type
+        color #D0021B
+        > span
+            font-Medium-bold()
+            font-size 0.3rem
+
+.tool-popup
+    position relative
+    width 5.4rem
+.tool-title,.tool-bg,.tool-bg-left,.tool-bg-right
+    position absolute
+.tool-title
+    top -0.58rem
+    left 0.7rem
+    z-index 5
+    width 4rem
+.tool-bg
+    top -2.5rem
+    left -0.5rem
+    z-index 1
+    width 6.4rem
+.tool-bg-left
+    top 0
+    left -0.45rem
+    z-index 3
+    width 1.04rem
+.tool-bg-right
+    top 0
+    right -0.45rem
+    z-index 3
+    width 1.41rem
+.tool-content
+    position relative
+    z-index 2
+    padding 1.14rem 0 0.4rem 0
+    border-radius 0.2rem
+    background #fff
+.tool-tip
+    > div
+        line-height 0.45rem
+        font-size 0.32rem
+        color #333
+        text-align center
+        > span
+            font-size 0.5rem
+            font-Medium-bold()
+            color #D0021B
+    > img
+        margin 0.35rem auto 0 auto
+        width 1.35rem
+.tool-btn
+    display flex
+    justify-content center
+    margin-top 0.4rem
+.tool-share
+    margin-top 0.3rem
+    padding 0 0.2rem
+.tool-share-title
+    display flex
+    justify-content center
+    align-items center
+    line-height 0.33rem
+    font-size 0.24rem
+    color #666
+    &:after,&:before
+        content ''
+        width 0.52rem
+        height 0.06rem
+        background-image url('~@static/images/201809/bargainshare/toolpopup/line.png')
+        background-size 100%
+    &:after
+        margin-left 0.2rem
+        transform rotateY(180deg)
+    &:before
+        margin-right 0.2rem
+.tool-weixin-btns
+    display flex
+    margin-top 0.4rem
+    font-size 0.24rem
+    text-align center
+    > div
+        flex 1
+        > img
+            margin 0 auto
+            height 0.8rem
+        > div
+            margin-top 0.1rem
+
+.share-popup
+    width 7.5rem
+    > img
+        float right
+        width 4.8rem
+
+.greybutton
+    background: #BBBBBB!important;
+    box-shadow: inset 0 -0.08rem 0.02rem 0 #ADADAD!important;
+    color:  #fff!important
+    &:before
+        width 77%
+        box-shadow 0 0 0.1rem 0 #c6b495!important
+.scale-enter-active {
+   -webkit-animation: scale-in  2s infinite linear;
+}
+.scale-leave-active {
+   -webkit-animation: scale-in  2s infinite linear;
+}
+@keyframes scale-in {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(.7);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+

@@ -1,0 +1,35 @@
+body
+  background: #f8f8f8;
+
+p,div
+  margin: 0;
+
+#app
+  width: 100%;
+  height: 100%;
+
+// 公共标题样式
+.block
+  width: 100%;
+  background-color: #ffffff;
+.block-title
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem 0 0.4rem 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: PingFangSC-Medium;
+  font-size: 0.36rem;
+  color: #333333;
+  letter-spacing: 1.61px;
+  &:after,&:before
+    content: '';
+    width: 0.55rem;
+    height: 0.2rem;
+    margin: 0 0.3rem;
+    background-image: url('~@static/images/201808/invite/titicon.png');
+    background-size: 100%;
+  &:after
+    transform: rotateZ(180deg);
+

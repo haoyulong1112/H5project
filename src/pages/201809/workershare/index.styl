@@ -1,0 +1,188 @@
+@import '~@/assets/style/mixins.styl'
+
+.container
+    width 100%
+    height 100%
+
+.index
+    padding-bottom 1.28rem
+    box-sizing border-box
+    font-family PingFangSC-Regular
+
+.title
+    padding 0.3rem 0.2rem
+    box-sizing border-box
+    background #fff
+    font-family PingFangSC-Medium
+    font-size 0.36rem
+    color #333333
+    > div:first-of-type
+        ellipsis-multi-lineheight(2, 0.5)
+    > div:last-of-type
+        ellipsis()
+        margin-top 0.1rem
+        font-size 0.24rem
+        color #999999
+.header
+    padding 0.3rem 0.2rem 0.2rem
+    box-sizing border-box
+    position relative
+    background #fff
+    display flex
+    justify-content: space-between
+    > .header-left
+        padding-right 0.37rem
+        > div:first-of-type
+            font-size 0.4rem
+            color #000000
+            font-Medium-bold()
+            line-height 0.56rem
+            margin-bottom 0.06rem
+        > div:nth-child(2)
+            font-style normal
+            display block
+            position absolute
+            top 0.45rem
+            left 1.65rem
+            padding 0.04rem 0.16rem
+            background-color #BB996C
+            border-radius 1rem
+            color #ffffff
+            line-height 0.28rem
+            font-size 0.2rem
+            &::after
+                border: solid transparent;
+                content: ' ';
+                height: 0;
+                top: 100%; 
+                position: absolute;
+                width: 0;
+                border-width: 0.12rem;
+                border-top-color: #BB996C;
+                left: 0.3rem;
+        > div:nth-child(3)
+            font-size 0.28rem
+            color #333
+            margin-bottom 0.08rem
+            line-height 0.4rem
+            > span:first-of-type
+                margin-right 0.3rem
+        > div:last-of-type
+            font-size 0.26rem
+            color #999
+            ellipsis-multi-lineheight(2, 0.37)
+    > .header-right
+        width 1.88rem
+        > img
+            circle(1.88)
+.title
+    background-color #ffffff
+    display flex
+    justify-content space-between
+    padding 0.3rem 0.2rem
+    > div:first-of-type
+        font-Medium-bold()
+        font-size 0.36rem
+        color #333333
+        font-family PingFangSC-Medium
+        line-height 0.5rem
+    > div:last-of-type
+        font-size 0.28rem
+        color #666666
+        letter-spacing 0.01rem
+        > img 
+            display inline-block
+            width 0.14rem
+            height 0.22rem
+            margin-left: 0.1rem
+.skill  
+    background-color #fff
+    padding 0 0.2rem
+    > div
+        display inline-block
+        font-size 0.24rem
+        color #BB996C
+        line-height 0.33rem
+        ellipsis()
+    > div:not(:last-of-type)
+        margin-right 0.4rem
+.workerdetail
+    background-color #fff
+    padding 0.3rem 0.2rem
+    position relative
+    > div:first-of-type
+        position absolute
+        top 0.08rem
+        left 1.5rem
+        padding 0.04rem 0.2rem
+        background-color #BB996C
+        border-radius 1rem
+        line-height 0.28rem
+        color #ffffff
+        font-size 0.2rem
+        &::after
+            border: solid transparent;
+            content: ' ';
+            height: 0;
+            top: 100%; 
+            position: absolute;
+            width: 0;
+            border-width: 0.12rem;
+            border-top-color: #BB996C;
+            left: 0.5rem;
+    >.detail-body
+        box-shadow 0 0.04rem 0.2rem 0 rgba(221,221,221,0.50);
+        border-radius 0.2rem    
+        padding 0.3rem 0.62rem
+        display flex
+        justify-content space-between
+        > div
+            flex 1
+        > div:nth-child(2)
+            position relative
+            &::after
+                left 0
+            &::before
+                right 0
+            &::after,&::before
+                content ''
+                top 0.2rem
+                position absolute
+                width 0.02rem
+                height 0.43rem
+                background #EEEEEE
+.workerdetail .top-title
+    font-Medium-bold()
+    font-size 0.36rem
+    color #333333
+    line-height 0.5rem
+    margin-bottom 0.1rem
+    text-align center
+    position relative
+.workerdetail .bottom-title
+    font-size 0.24rem
+    color #999999
+    line-height 0.33rem
+    text-align center
+.workerdetail .line 
+    width 0.02rem 
+    height 0.43rem
+    background-color #eeeeee
+    margin-top 0.26rem
+.works
+    background-color #fff
+    margin-top 0.2rem
+    > .workslist
+        > div
+            padding 0 0.2rem 0.3rem
+            white-space: nowrap;
+            overflow-x: scroll;
+            > img 
+                width 2.22rem
+                height 2.22rem
+                border-radius 0.2rem
+                margin-right: 0.2rem
+                display: inline-block;
+.comment
+    margin-top 0.2rem
+    background-color #ffffff
