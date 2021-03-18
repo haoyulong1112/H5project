@@ -14,26 +14,18 @@
     
     var demoConfig = {
         // 请求域名头 pet-pai
-        requestDomain: 'http://demo.cwjia.cn',
-        // 请求域名头 mis
-        misrequestDomain: 'http://192.168.0.249',
-        // 请求域名头 worker美容师端
-        requestDomainWorker: 'http://demo.cwjia.cn',
+        requestDomain: 'http://8.141.49.230',
         // 分享appid
-        shareAppid: 'wx2f1efa7dbefa3a84',
+        // shareAppid: 'wx2f1efa7dbefa3a84',
         // 分享域名头
         shareDomain: 'http://demo.cwjia.cn',
         // 管理域名头
-        manageDomain: 'http://demo.cwjia.cn'
+        manageDomain: 'http://8.141.49.230'
     }
 
     var prodConfig = {
         // 请求域名头 pet-pai
         requestDomain: 'https://api.ichongwujia.com',
-        // 请求域名头 mis
-        misrequestDomain: 'https://m.cwjia.cn',
-        // 请求域名头 worker美容师端
-        requestDomainWorker: 'https://worker.ichongwujia.com',
         // 分享appid
         shareAppid: 'wxa45f2b3c39b095f5',
         // 分享域名头
@@ -81,7 +73,7 @@
 
     // 通过hostname区分环境
     var testDomainArray = ['192.168.0.252']
-    var demoDomainArray = ['demo.cwjia.cn']
+    var demoDomainArray = ['8.141.49.230']
     var prodDomainArray = ['api.cwjia.cn', 'api.ichongwujia.com', 'static.ichongwujia.com']
 
     var hostname = window.location.hostname
