@@ -39,9 +39,9 @@
         // rem布局页面最大宽度
         pageWidth: 640,
         // 分享图片
-        shareImg: 'http://dev-pet-avatar.oss-cn-beijing.aliyuncs.com/html5/15690470902670425207.png',
+        shareImg: '~@static/icons/xianliao.png',
         // favicon
-        favicon: 'https://dev-pet-avatar.oss-cn-beijing.aliyuncs.com/html5/15690470902670425207.png',
+        favicon: '~@static/icons/xianliao.png',
         // 跳转应用宝下载APP
         downloadApp: function () { window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.haotang.pet&g_f=991653' },
         // 下载组件logo
@@ -49,7 +49,7 @@
         // 下载组件title
         downloadTitle: '咸聊',
         // 下载组件description
-        downloadDescription: '专注您的宠物生活',
+        downloadDescription: '专注您的聊天社交',
         // 客服电话
         kfnum: '400-030-0011',
         kfnumber: '4000300011',
