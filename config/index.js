@@ -18,7 +18,7 @@ module.exports = {
         proxyTable: {
             // 开发环境通过本地node服务器桥接java接口，解决跨域
             '/test': {
-                target: 'http://192.168.0.252',
+                target: 'http://8.141.49.230:8200/',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/test': ''

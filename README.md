@@ -138,18 +138,13 @@ npm run lint-fix
 放入下面的参考代码   
 
 ``` js
-// 252
-// 请求域名头 和 跨域代理域名头
-// envConfig.requestDomain = 'http://192.168.0.252'
-// envConfig.requestDomain = '/test'
-
 // demo
 // // 请求域名头 和 跨域代理域名头
-envConfig.requestDomain = 'http://demo1.cwjia.cn'
+// envConfig.requestDomain = 'http://8.141.49.230:8200/'
 // envConfig.requestDomain = '/demo'
 
 // prod
 // // 请求域名头 和 跨域代理域名头
-// envConfig.requestDomain = 'https://api.ichongwujia.com'
+// envConfig.requestDomain = ''
 // envConfig.requestDomain = '/prod'
 ```

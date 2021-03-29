@@ -16,9 +16,9 @@
         // 请求域名头 pet-pai
         requestDomain: 'http://8.141.49.230',
         // 分享appid
-        // shareAppid: 'wx2f1efa7dbefa3a84',
+        shareAppid: '101940259',
         // 分享域名头
-        shareDomain: 'http://demo.cwjia.cn',
+        shareDomain: 'http://8.141.49.230',
         // 管理域名头
         manageDomain: 'http://8.141.49.230'
     }
@@ -27,7 +27,7 @@
         // 请求域名头 pet-pai
         requestDomain: 'https://api.ichongwujia.com',
         // 分享appid
-        shareAppid: 'wxa45f2b3c39b095f5',
+        shareAppid: '101940259',
         // 分享域名头
         shareDomain: 'http://static.ichongwujia.com',
         // 管理域名头
@@ -38,8 +38,6 @@
     var config = {
         // rem布局页面最大宽度
         pageWidth: 640,
-        // 头像
-        userAvatar: 'http://dev-pet-avatar.oss-cn-beijing.aliyuncs.com/html5/15655992129449057657.png',
         // 分享图片
         shareImg: 'http://dev-pet-avatar.oss-cn-beijing.aliyuncs.com/html5/15690470902670425207.png',
         // favicon
@@ -49,26 +47,12 @@
         // 下载组件logo
         downloadLogo: 'http://dev-pet-avatar.oss-cn-beijing.aliyuncs.com/html5/15655992124122270752.png',
         // 下载组件title
-        downloadTitle: '宠物家',
+        downloadTitle: '咸聊',
         // 下载组件description
         downloadDescription: '专注您的宠物生活',
-        // 验证登录手机号正则
-        cellPhoneReg: /^1[0-9]{10}$/,
         // 客服电话
         kfnum: '400-030-0011',
         kfnumber: '4000300011',
-        // 服务端返回的图片地址兼容性处理
-        getFullImgUrl: function (string) {
-            if (string && typeof string === 'string') {
-                return /^http/.test(string) ? string : envConfig.requestDomain + string
-            }
-        },
-        // 宠物头像图片地址兼容性处理
-        getFullPetAvatar: function (string) {
-            if (string && typeof string === 'string') {
-                return /^http/.test(string) ? string : 'http://img.cwjia.cn/static/pavatar/' + string
-            }
-        }
     }
 
     // 通过hostname区分环境
