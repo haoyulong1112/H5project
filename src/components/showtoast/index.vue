@@ -51,6 +51,7 @@ export default {
         // top: 4rem;
         left: 50%;
         margin-left -3.35rem;
+        z-index 999;
         > .toast
             width: 6.7rem;
             height: 1.4rem;

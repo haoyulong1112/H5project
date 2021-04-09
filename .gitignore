@@ -18,4 +18,4 @@ sendbuild.sh
 # self config
 rsync.sh
 /static/config/dev.js
-sendbuild.sh
+# sendbuild.sh
