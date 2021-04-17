@@ -4,7 +4,6 @@
             <div><img src="~@static/images/202103/share1/icon.png" alt="">闲聊</div>
             <div>打开应用程序</div>
         </div>
-        <div class="desbig">还没俱乐部账号？ 获取应用程序尽早访问吧</div>
         <div class="download">
             <div><img src="~@static/images/202103/share1/icon.png" alt=""></div>
             <div>

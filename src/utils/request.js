@@ -16,7 +16,7 @@ let ajaxArray = []
 
 export default (options = {}) => {
     return new Promise((resolve, reject) => {
-    // 是否阻止相同的请求并发 默认阻止
+        // 是否阻止相同的请求并发 默认阻止
         let ajaxUrl = options.url
         if (!options.concurrent) {
             ajaxUrl = ajaxUrl.split('?')[0]
@@ -27,7 +27,7 @@ export default (options = {}) => {
             ajaxArray.push(ajaxUrl)
         }
         ajax(options).then((res) => {
-            if (res.code === 0) {
+            if (res.code === '200') {
                 // code===0才会返回响应成功
                 resolve(res)
             } else if (res.errno === 0) {
