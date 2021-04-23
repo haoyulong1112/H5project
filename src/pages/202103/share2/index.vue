@@ -61,29 +61,30 @@ export default {
         }
     },
     created () {
-        console.log(this.roomStatus);
-        let data = {
-            channel: params.id
-        }
-        queryRoomShareInfo(data).then(res => {
-            console.log(res);
-            if (res.code == '200') {
-                this.name = res.data.name;
-                this.instructions = res.data.instructions;
-                this.totalUserCount = res.data.totalUserCount;
-                this.speakersCount = res.data.speakersCount;
-                let speakers = res.data.speakers;
-                this.roomStatus = res.data.roomStatus;
-                for (let i in speakers) {
-                    if (i < 2) {
-                        this.headpic.push(speakers[i]);
-                    }
-                    if (i < 3) {
-                        this.nickname.push(speakers[i]);
-                    }
-                }
-            }
-        })
+        console.log(navigator.userAgent);
+        // console.log(navigator.userAgent.toLowerCase());
+        // let data = {
+        //     channel: params.id
+        // }
+        // queryRoomShareInfo(data).then(res => {
+        //     console.log(res);
+        //     if (res.code == '200') {
+        //         this.name = res.data.name;
+        //         this.instructions = res.data.instructions;
+        //         this.totalUserCount = res.data.totalUserCount;
+        //         this.speakersCount = res.data.speakersCount;
+        //         let speakers = res.data.speakers;
+        //         this.roomStatus = res.data.roomStatus;
+        //         for (let i in speakers) {
+        //             if (i < 2) {
+        //                 this.headpic.push(speakers[i]);
+        //             }
+        //             if (i < 3) {
+        //                 this.nickname.push(speakers[i]);
+        //             }
+        //         }
+        //     }
+        // })
     }
 };
 </script>

@@ -7,19 +7,20 @@
         <div class="content">
             <div>{{date}}</div>
             <div>{{title}}</div>
-            <!-- <div>MIND BODY GAME<img src="~@static/images/202103/share1/clubicon.png" alt=""></div> -->
             <div><img v-for="(item,index) in othersInfos" :key="`a${index}`" :src="item.headPic" alt=""></div>
             <div>{{introduce}}</div>
         </div>
-        <!-- <div class="hasacount">已有账号</div> -->
         <div class="chakan">查看完整事件</div>
         <div class="des">还没俱乐部账号？ 获取应用程序尽早访问吧</div>
         <div class="appstore"><img src="~@static/images/202103/share1/appstore.png" alt=""></div>
+        <!-- toast提示 -->
+        <showtoast ref="showtoast" v-bind:text="shoetext"></showtoast>
     </div>
 </template>
 
 <script>
 import { queryProgrammeInfo } from '@/api/202103/share'
+import showtoast from '@/components/showtoast/index.vue'
 
 import getParams from '@/utils/urlparams'
 const params = getParams()
@@ -31,28 +32,45 @@ export default {
             date: '',
             title: '',
             introduce: '',
-            othersInfos: []
+            othersInfos: [],
+            shoetext: '',
         }
     },
+    components: {
+        showtoast
+    },
     created () {
-        let data = {
-            programeId: params.id
-        }
-        queryProgrammeInfo(data).then(res => {
-            console.log(res);
-            if (res.code == '200') {
-                let date = res.data.programmeInfo.createTime || '';
-                let title = res.data.programmeInfo.title || '';
-                let introduce = res.data.programmeInfo.introduce || '';
-                this.title = title;
-                this.introduce = introduce;
-                this.othersInfos = res.data.othersInfos;
-                if (date) {
-                    let newdate = this.timestampToTime(date);
-                    let datearr = newdate.split(':');
-                    this.date = datearr[0] + ':' + datearr[1];
-                    console.log(this.date);
-                }
+        this.$nextTick(function () {
+            let data = {
+                programeId: params.id
+            }
+            if(data.programeId){
+                queryProgrammeInfo(data).then(res => {
+                    console.log(res);
+                    if (res.code == '200') {
+                        let date = res.data.programmeInfo.createTime || '';
+                        let title = res.data.programmeInfo.title || '';
+                        let introduce = res.data.programmeInfo.introduce || '';
+                        this.title = title;
+                        this.introduce = introduce;
+                        this.othersInfos = res.data.othersInfos;
+                        if (date) {
+                            let newdate = this.timestampToTime(date);
+                            let datearr = newdate.split(':');
+                            this.date = datearr[0] + ':' + datearr[1];
+                            console.log(this.date);
+                        }
+                    }else{
+                        this.shoetext = '参数错误';
+                        this.$refs.showtoast.showtime();
+                    }
+                }).catch(err => {
+                    this.shoetext = err.msg || '系统异常';
+                    this.$refs.showtoast.showtime();
+                })
+            }else{
+                this.shoetext = '缺少参数';
+                this.$refs.showtoast.showtime();
             }
         })
     },
@@ -68,7 +86,7 @@ export default {
             let strDate = Y + M + D + h + m + s;
             return strDate;
         }
-    }
+    },
 };
 </script>
 
