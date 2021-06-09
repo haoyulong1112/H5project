@@ -32,7 +32,7 @@
         </div>
         <div class="status"  v-if="roomStatus == 0">
             <div>这个房间已经结束</div>
-            <div>但是现在又哦更多的正在开启</div>
+            <div>但是现在又有更多的正在开启</div>
         </div>
         <div class="chakan"  v-if="roomStatus == 0">查看完整事件</div>
         <div class="des">还没俱乐部账号？ 获取应用程序尽早访问吧</div>
@@ -63,28 +63,28 @@ export default {
     created () {
         console.log(navigator.userAgent);
         // console.log(navigator.userAgent.toLowerCase());
-        // let data = {
-        //     channel: params.id
-        // }
-        // queryRoomShareInfo(data).then(res => {
-        //     console.log(res);
-        //     if (res.code == '200') {
-        //         this.name = res.data.name;
-        //         this.instructions = res.data.instructions;
-        //         this.totalUserCount = res.data.totalUserCount;
-        //         this.speakersCount = res.data.speakersCount;
-        //         let speakers = res.data.speakers;
-        //         this.roomStatus = res.data.roomStatus;
-        //         for (let i in speakers) {
-        //             if (i < 2) {
-        //                 this.headpic.push(speakers[i]);
-        //             }
-        //             if (i < 3) {
-        //                 this.nickname.push(speakers[i]);
-        //             }
-        //         }
-        //     }
-        // })
+        let data = {
+            channel: params.id
+        }
+        queryRoomShareInfo(data).then(res => {
+            console.log(res);
+            if (res.code == '200') {
+                this.name = res.data.name;
+                this.instructions = res.data.instructions;
+                this.totalUserCount = res.data.totalUserCount;
+                this.speakersCount = res.data.speakersCount;
+                let speakers = res.data.speakers;
+                this.roomStatus = res.data.roomStatus;
+                for (let i in speakers) {
+                    if (i < 2) {
+                        this.headpic.push(speakers[i]);
+                    }
+                    if (i < 3) {
+                        this.nickname.push(speakers[i]);
+                    }
+                }
+            }
+        })
     }
 };
 </script>

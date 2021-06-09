@@ -2,7 +2,7 @@
     <div class="container">
         <div class="share1-top">
             <div><img src="~@static/images/202103/share1/icon.png" alt="">闲聊</div>
-            <div>打开应用程序</div>
+            <div @click="openApp">打开应用程序</div>
         </div>
         <div class="content">
             <div>{{date}}</div>
@@ -10,7 +10,7 @@
             <div><img v-for="(item,index) in othersInfos" :key="`a${index}`" :src="item.headPic" alt=""></div>
             <div>{{introduce}}</div>
         </div>
-        <div class="chakan">查看完整事件</div>
+        <div class="chakan" @click="openApp">查看完整事件</div>
         <div class="des">还没俱乐部账号？ 获取应用程序尽早访问吧</div>
         <div class="appstore"><img src="~@static/images/202103/share1/appstore.png" alt=""></div>
         <!-- toast提示 -->
@@ -34,12 +34,14 @@ export default {
             introduce: '',
             othersInfos: [],
             shoetext: '',
+            id: ''
         }
     },
     components: {
         showtoast
     },
     created () {
+        this.id = params.id;
         this.$nextTick(function () {
             let data = {
                 programeId: params.id
@@ -85,6 +87,9 @@ export default {
             var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
             let strDate = Y + M + D + h + m + s;
             return strDate;
+        },
+        openApp(){
+            window.location.href = 'https://www.huitingdata.com?id'+this.id;
         }
     },
 };
