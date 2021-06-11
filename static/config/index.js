@@ -14,13 +14,9 @@
 
     var demoConfig = {
         // 请求域名头 pet-pai
-        requestDomain: 'http://8.141.49.230',
-        // 分享appid
-        shareAppid: '101940259',
-        // 分享域名头
-        shareDomain: 'http://8.141.49.230',
-        // 管理域名头
-        manageDomain: 'http://8.141.49.230'
+        requestDomain: 'http://8.141.49.230:8200',
+        //跨域
+        // requestDomain: 'http://8.141.49.230',
     }
 
     // var prodConfig = {

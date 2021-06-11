@@ -10,7 +10,7 @@
             <div><img v-for="(item,index) in othersInfos" :key="`a${index}`" :src="item.headPic" alt=""></div>
             <div>{{introduce}}</div>
         </div>
-        <div class="chakan" @click="openApp">查看完整事件</div>
+        <div class="chakan" @click="openApp(1)">查看完整事件</div>
         <div class="des">还没俱乐部账号？ 获取应用程序尽早访问吧</div>
         <div class="appstore"><img src="~@static/images/202103/share1/appstore.png" alt=""></div>
         <!-- toast提示 -->
@@ -34,7 +34,8 @@ export default {
             introduce: '',
             othersInfos: [],
             shoetext: '',
-            id: ''
+            id: '',
+            type: ''
         }
     },
     components: {
@@ -42,6 +43,7 @@ export default {
     },
     created () {
         this.id = params.id;
+        this.type = params.type;
         this.$nextTick(function () {
             let data = {
                 programeId: params.id
@@ -88,8 +90,12 @@ export default {
             let strDate = Y + M + D + h + m + s;
             return strDate;
         },
-        openApp(){
-            window.location.href = 'https://www.huitingdata.com?id'+this.id;
+        openApp(type){
+            if(type == 1){
+                window.location.href = 'https://www.huitingdata.com?id='+this.id + '&type='+this.type;
+            }else{
+                window.location.href = 'https://www.huitingdata.com';
+            }
         }
     },
 };
