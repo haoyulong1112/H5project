@@ -35,7 +35,8 @@ export default {
             othersInfos: [],
             shoetext: '',
             id: '',
-            type: ''
+            type: '',
+            checkId: '',
         }
     },
     components: {
@@ -43,7 +44,8 @@ export default {
     },
     created () {
         this.id = params.id;
-        this.type = params.type;
+        this.type = params.type || '';
+        this.checkId = params.checkId || '';
         this.$nextTick(function () {
             let data = {
                 programeId: params.id
@@ -92,7 +94,7 @@ export default {
         },
         openApp(type){
             if(type == 1){
-                window.location.href = 'https://www.huitingdata.com?id='+this.id + '&type='+this.type;
+                window.location.href = 'https://www.huitingdata.com?id='+this.id + '&type='+this.type + '&checkId='+this.checkId;
             }else{
                 window.location.href = 'https://www.huitingdata.com';
             }

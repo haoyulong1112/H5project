@@ -59,12 +59,14 @@ export default {
             // 房间状态 1正在进行 0 已结束
             roomStatus: 1,
             id: '',
-            type: ''
+            type: '',
+            checkId: ''
         }
     },
     created () {
         this.id = params.id;
-        this.type = params.type;
+        this.type = params.type || '';
+        this.checkId = params.checkId || '';
         let data = {
             channel: params.id
         }
@@ -91,7 +93,7 @@ export default {
     methods: {
         openApp(type){
             if(type == 1){
-                window.location.href = 'https://www.huitingdata.com?id='+this.id + '&type='+this.type;
+                window.location.href = 'https://www.huitingdata.com?id='+this.id + '&type='+this.type + '&checkId='+this.checkId;
             }else{
                 window.location.href = 'https://www.huitingdata.com';
             }
