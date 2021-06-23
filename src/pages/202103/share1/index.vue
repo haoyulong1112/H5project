@@ -15,6 +15,7 @@
         <div class="appstore"><img src="~@static/images/202103/share1/appstore.png" alt=""></div>
         <!-- toast提示 -->
         <showtoast ref="showtoast" v-bind:text="shoetext"></showtoast>
+        <div class="mask" v-if="showMask"><img src="~@static/images/202103/share1/download.png" alt=""></div>
     </div>
 </template>
 
@@ -37,6 +38,7 @@ export default {
             id: '',
             type: '',
             checkId: '',
+            showMask: false
         }
     },
     components: {
@@ -52,7 +54,6 @@ export default {
             }
             if(data.programeId){
                 queryProgrammeInfo(data).then(res => {
-                    console.log(res);
                     if (res.code == '200') {
                         let date = res.data.programmeInfo.createTime || '';
                         let title = res.data.programmeInfo.title || '';
@@ -64,7 +65,6 @@ export default {
                             let newdate = this.timestampToTime(date);
                             let datearr = newdate.split(':');
                             this.date = datearr[0] + ':' + datearr[1];
-                            console.log(this.date);
                         }
                     }else{
                         this.shoetext = '参数错误';
@@ -93,11 +93,48 @@ export default {
             return strDate;
         },
         openApp(type){
-            if(type == 1){
-                window.location.href = 'https://www.huitingdata.com?id='+this.id + '&type='+this.type + '&checkId='+this.checkId;
+            let flag = this.isQQorWeiBo();
+            console.log('flag='+flag);
+            if(!flag){
+                if(type == 1){
+                    window.location.href = 'https://www.huitingdata.com?id='+this.id + '&type='+this.type + '&checkId='+this.checkId;
+                }else{
+                    window.location.href = 'https://www.huitingdata.com';
+                }
             }else{
-                window.location.href = 'https://www.huitingdata.com';
+                this.showMask = true;
             }
+        },
+        // 判断是否再微博或者QQ
+        isQQorWeiBo(){
+            let flag = false;
+            var browser = {
+                versions: function () {
+                    var u = navigator.userAgent;
+                    return {     //移动终端浏览器版本信息
+                    trident: u.indexOf('Trident') > -1, //IE内核
+                    presto: u.indexOf('Presto') > -1, //opera内核
+                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+                    iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    webApp: u.indexOf('Safari') == -1 //是否web应用程序，没有头部与底部
+                    };
+                }(),
+                language: (navigator.browserLanguage || navigator.language).toLowerCase()
+            } 
+            let ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/QQ/i) == "qq" || ua.match(/WeiBo/i) == "weibo") {
+                //在新浪微博客户端打开
+                flag = true
+            }
+            if(ua.match("micromessenger") == "micromessenger"){
+                flag = false
+            }
+            return flag
         }
     },
 };
