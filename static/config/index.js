@@ -1,17 +1,5 @@
 (function(window) {
     // 区分环境的配置 252 demo prod
-    var testConfig = {
-        // 请求域名头 pet-pai
-        requestDomain: 'http://192.168.0.252',
-        // 分享appid
-        shareAppid: 'wx2f1efa7dbefa3a84',
-        // 分享域名头
-        shareDomain: 'http://192.168.0.252',
-        // 管理域名头
-        manageDomain: 'http://192.168.0.252'
-    }
-
-
     var demoConfig = {
         // 请求域名头 pet-pai
         requestDomain: 'http://8.141.49.230:8200',
@@ -19,16 +7,16 @@
         // requestDomain: 'http://8.141.49.230',
     }
 
-    // var prodConfig = {
-    //     // 请求域名头 pet-pai
-    //     requestDomain: 'https://api.ichongwujia.com',
-    //     // 分享appid
-    //     shareAppid: '101940259',
-    //     // 分享域名头
-    //     shareDomain: 'http://static.ichongwujia.com',
-    //     // 管理域名头
-    //     manageDomain: 'http://manage.ichongwujia.com'
-    // }
+    var prodConfig = {
+        // 请求域名头 pet-pai
+        requestDomain: 'http://ch.huitingdata.com',
+        // 分享appid
+        // shareAppid: '',
+        // 分享域名头
+        shareDomain: 'http://www.huitingdata.com',
+        // 管理域名头
+        manageDomain: ''
+    }
 
     // 固定的配置
     var config = {
@@ -52,9 +40,8 @@
     }
 
     // 通过hostname区分环境
-    var testDomainArray = ['192.168.0.252']
     var demoDomainArray = ['8.141.49.230']
-    var prodDomainArray = ['api.cwjia.cn', 'api.ichongwujia.com', 'static.ichongwujia.com']
+    var prodDomainArray = ['www.huitingdata.com']
 
     var hostname = window.location.hostname
 
@@ -67,13 +54,11 @@
 
     window.config = config
     window.envConfig = {}
-    if (isItemInStr(hostname, testDomainArray)) {
-        window.envConfig = testConfig
-    }
     if (isItemInStr(hostname, demoDomainArray)) {
         window.envConfig = demoConfig
     }
     if (isItemInStr(hostname, prodDomainArray)) {
         window.envConfig = prodConfig
     }
+    console.log(window.envConfig)
 }(window))
