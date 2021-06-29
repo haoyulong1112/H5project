@@ -52,7 +52,7 @@ export default {
             let data = {
                 programeId: params.id
             }
-            if(data.programeId){
+            if (data.programeId) {
                 queryProgrammeInfo(data).then(res => {
                     if (res.code == '200') {
                         let date = res.data.programmeInfo.createTime || '';
@@ -66,7 +66,7 @@ export default {
                             let datearr = newdate.split(':');
                             this.date = datearr[0] + ':' + datearr[1];
                         }
-                    }else{
+                    } else {
                         this.shoetext = '参数错误';
                         this.$refs.showtoast.showtime();
                     }
@@ -74,7 +74,7 @@ export default {
                     this.shoetext = err.msg || '系统异常';
                     this.$refs.showtoast.showtime();
                 })
-            }else{
+            } else {
                 this.shoetext = '缺少参数';
                 this.$refs.showtoast.showtime();
             }
@@ -92,51 +92,33 @@ export default {
             let strDate = Y + M + D + h + m + s;
             return strDate;
         },
-        openApp(type){
+        openApp (type) {
             let flag = this.isQQorWeiBo();
-            console.log('flag='+flag);
-            if(!flag){
-                if(type == 1){
-                    window.location.href = 'https://www.huitingdata.com?id='+this.id + '&type='+this.type + '&checkId='+this.checkId;
-                }else{
+            console.log('flag=' + flag);
+            if (!flag) {
+                if (type == 1) {
+                    window.location.href = 'https://www.huitingdata.com?id=' + this.id + '&type=' + this.type + '&checkId=' + this.checkId;
+                } else {
                     window.location.href = 'https://www.huitingdata.com';
                 }
-            }else{
+            } else {
                 this.showMask = true;
             }
         },
         // 判断是否再微博或者QQ
-        isQQorWeiBo(){
+        isQQorWeiBo () {
             let flag = false;
-            var browser = {
-                versions: function () {
-                    var u = navigator.userAgent;
-                    return {     //移动终端浏览器版本信息
-                    trident: u.indexOf('Trident') > -1, //IE内核
-                    presto: u.indexOf('Presto') > -1, //opera内核
-                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-                    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-                    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
-                    iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
-                    iPad: u.indexOf('iPad') > -1, //是否iPad
-                    webApp: u.indexOf('Safari') == -1 //是否web应用程序，没有头部与底部
-                    };
-                }(),
-                language: (navigator.browserLanguage || navigator.language).toLowerCase()
-            } 
             let ua = navigator.userAgent.toLowerCase();
-            if (ua.match(/QQ/i) == "qq" || ua.match(/WeiBo/i) == "weibo") {
-                //在新浪微博客户端打开
+            if (ua.match(/QQ/i) == 'qq' || ua.match(/WeiBo/i) == 'weibo') {
+                // 在新浪微博客户端打开
                 flag = true
             }
-            if(ua.match("micromessenger") == "micromessenger"){
+            if (ua.match('micromessenger') == 'micromessenger') {
                 flag = false
             }
             return flag
         }
-    },
+    }
 };
 </script>
 

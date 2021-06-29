@@ -41,7 +41,7 @@
 
     // 通过hostname区分环境
     var demoDomainArray = ['8.141.49.230']
-    var prodDomainArray = ['www.huitingdata.com']
+    var prodDomainArray = ['h5.huitingdata.com']
 
     var hostname = window.location.hostname
 
