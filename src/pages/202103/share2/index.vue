@@ -34,7 +34,7 @@
             <div>这个房间已经结束</div>
             <div>但是现在又有更多的正在开启</div>
         </div>
-        <div class="chakan" v-if="roomStatus == 0" @click="openApp(1)">查看完整事件</div>
+        <div class="chakan" v-if="roomStatus == 1" @click="openApp(1)">查看完整事件</div>
         <div class="des">还没俱乐部账号？ 获取应用程序尽早访问吧</div>
         <div class="appstore"><img src="~@static/images/202103/share1/appstore.png" alt=""></div>
         <div class="mask" v-if="showMask"><img src="~@static/images/202103/share1/download.png" alt=""></div>
