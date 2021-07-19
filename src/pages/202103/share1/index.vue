@@ -55,7 +55,7 @@ export default {
             if (data.programeId) {
                 queryProgrammeInfo(data).then(res => {
                     if (res.code == '200') {
-                        let date = res.data.programmeInfo.createTime || '';
+                        let date = res.data.programmeInfo.startTime || '';
                         let title = res.data.programmeInfo.title || '';
                         let introduce = res.data.programmeInfo.introduce || '';
                         this.title = title;
