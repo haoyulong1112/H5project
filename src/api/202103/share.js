@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 const requestDomain = envConfig.requestDomain
-
+console.log(requestDomain);
 // 房间分享房间详情
 export const queryRoomShareInfo = data => {
     return request({
