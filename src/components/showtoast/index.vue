@@ -6,22 +6,26 @@
 <script>
 export default {
     name: 'showtoast',
+    props: {
+    },
     data () {
         return {
-            showRule: false
+            showRule: false,
         }
     },
     created () {
+            console.log(this.timesout)
         // this.showtime();
     },
     methods: {
         showtime () {
             this.showRule = true;
+            console.log(this.timesout)
             setTimeout(() => {
                 if (this.showRule) {
                     this.showRule = false
                 }
-            }, 2000)
+            }, this.timesout)
         }
     },
     props: {
@@ -40,6 +44,10 @@ export default {
         top: {
             type: String,
             default: 'top: 5rem;'
+        },
+        timesout: {
+            type: Number,
+            default: 2000
         }
     }
 }

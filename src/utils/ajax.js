@@ -1,6 +1,6 @@
 /* eslint-disable */
 /*
-utils/ajax.js
+utils/ajax.js   Authorization
 封装ajax，支持Promise
 @author jinhuajie <jinhuajie@haotang365.com.cn>
 */
@@ -8,9 +8,9 @@ export default (options = {}) => {
     const type = options.type ? options.type.toUpperCase() : 'POST'
     let url = options.url || ''
     const contentType = options.contentType || 'application/x-www-form-urlencoded'
+    const header = options.header || {};
     const data = options.data || {}
     const async = options.async !== false
-
     return new Promise((resolve, reject) => {
         let requestObj = {}
         if (window.XMLHttpRequest) {
@@ -28,6 +28,15 @@ export default (options = {}) => {
             url = dataStr ? url + '?' + dataStr : url
             requestObj.open(type, url, async)
             requestObj.setRequestHeader('Content-type', contentType)
+            if (header.token) {
+                requestObj.setRequestHeader('token', header.token);
+            }
+            if (header.cellPhone) {
+                requestObj.setRequestHeader('cellPhone', header.cellPhone);
+            }
+            if (header.type) {
+                requestObj.setRequestHeader('type', header.type);
+            }
             requestObj.send()
         } else if (type == 'POST') {
             if (data.system) {
@@ -39,6 +48,15 @@ export default (options = {}) => {
             }
             requestObj.open(type, url, async)
             requestObj.setRequestHeader('Content-type', contentType)
+            if (header.token) {
+                requestObj.setRequestHeader('token', header.token);
+            }
+            if (header.cellPhone) {
+                requestObj.setRequestHeader('cellPhone', header.cellPhone);
+            }
+            if (header.type) {
+                requestObj.setRequestHeader('type', header.type);
+            }
             requestObj.send(dataStr)
         } else {
             reject(new Error('不支持的type'))
@@ -48,10 +66,14 @@ export default (options = {}) => {
             if (requestObj.readyState == 4) {
                 if (requestObj.status == 200) {
                     let obj = requestObj.response
-                    if (typeof obj !== 'object') {
-                        obj = JSON.parse(obj)
+                    if (obj) {
+                        if (typeof obj !== 'object') {
+                            obj = JSON.parse(obj)
+                        }
+                        resolve(obj)
+                    } else {
+                        reject(requestObj)
                     }
-                    resolve(obj)
                 } else {
                     reject(requestObj)
                 }

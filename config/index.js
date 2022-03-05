@@ -16,23 +16,24 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '',
         proxyTable: {
-            // 开发环境通过本地node服务器桥接java接口，解决跨域
+            // 开发环境通过本地node服务器桥接java接口，解决跨域 
             '/test': {
-                target: 'http://8.141.49.230:8200/',
+                // target: 'http://8.141.49.230:8200/',
+                target: 'https://api.huitingdata.com',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/test': ''
                 }
             },
             '/demo': {
-                target: 'http://demo.cwjia.cn',
+                target: 'xxxxxx',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/demo': ''
                 }
             },
             '/prod': {
-                target: 'https://api.ichongwujia.com',
+                target: 'https://api.huitingdata.com',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/prod': ''
