@@ -8,7 +8,7 @@
                 <span>邀请好友注册</span>
                 <img src="~@static/images/202212/right.png" alt="">
             </div>
-            <div class="tips">双方各得20关</div>
+            <div class="tips">领取即送15天免费使用权同时赠送双方各20积分</div>
             <div :class="pageWidth == 750 ? 'formbox small' : 'formbox'">
                 <img class="formboxbgc" v-if="pageWidth == 1024" src="~@static/images/202212/red.png" alt="">
                 <img class="formboxbgc" v-else src="~@static/images/202212/red_small.png" alt="">
@@ -34,10 +34,16 @@
                 </div>
                 <div :class="pageWidth == 750 ? 'explain_content small' : 'explain_content'">
                     <div :class="pageWidth == 750 ? 'small' : ''">
-                        <img src="~@static/images/202212/Star.png" alt="">邀请好友各获得20关，登录app后在我的管理页面可以查看
+                        <img src="~@static/images/202212/Star.png" alt="">好友注册即可领取15天免费使用权
                     </div>
                     <div :class="pageWidth == 750 ? 'small' : ''">
-                        <img src="~@static/images/202212/Star.png" alt="">每关可下载一个课件，欢迎您登录App使用
+                        <img src="~@static/images/202212/Star.png" alt="">娃娃路是一个针对哑巴英语的图解听力练习APP
+                    </div>
+                    <div :class="pageWidth == 750 ? 'small' : ''">
+                        <img src="~@static/images/202212/Star.png" alt="">同时赠送双方各20积分
+                    </div>
+                    <div :class="pageWidth == 750 ? 'small' : ''">
+                        <img src="~@static/images/202212/Star.png" alt="">注册后，应用商店搜“娃娃路”下载APP，用该手机号登录即用
                     </div>
                 </div>
             </div>
@@ -56,7 +62,7 @@
 </template>
 
 <script>
-import { getCheckCode,verifyRecommandCheckCode } from '@/api/202103/share'
+import { getCheckCode, verifyRecommandCheckCode } from '@/api/202103/share'
 import md5 from 'js-md5';
 
 import getParams from '@/utils/urlparams'
@@ -88,8 +94,8 @@ export default {
         this.userId = params.userId
     },
     methods: {
-        getReword(){
-            if(!this.canLogin){
+        getReword () {
+            if (!this.canLogin) {
                 return;
             }
             let data = {
@@ -98,35 +104,35 @@ export default {
                 userId: this.userId
             }
             verifyRecommandCheckCode(data).then(res => {
-                if(res.code == 200){
+                if (res.code == 200) {
                     this.showPopup = true;
                 }
             })
         },
-        codeChcnge(e){
-            if(this.form.cellPhone && this.form.code){
+        codeChcnge (e) {
+            if (this.form.cellPhone && this.form.code) {
                 this.canLogin = true
-            }else{
+            } else {
                 this.canLogin = false
             }
             console.log(this.canLogin)
         },
-        phoneChcnge(e){
-            if(this.form.cellPhone && this.form.code){
+        phoneChcnge (e) {
+            if (this.form.cellPhone && this.form.code) {
                 this.canLogin = true
-            }else{
+            } else {
                 this.canLogin = false
             }
             console.log(this.canLogin)
         },
         // 点击发送验证码按钮
-        getCode () { 
-            if(!this.form.cellPhone){
+        getCode () {
+            if (!this.form.cellPhone) {
                 // this.shoetext = '手机号未填写';
                 Toast('手机号未填写')
                 return;
             }
-            if(!phoneReg.test(this.form.cellPhone)){
+            if (!phoneReg.test(this.form.cellPhone)) {
                 // this.shoetext = '手机号格式不正确';
                 // this.$refs.showtoast.showtime();
                 Toast('手机号格式不正确')
@@ -147,7 +153,7 @@ export default {
                     }
                 }).catch(err => {
                     console.log(err)
-                        Toast(err.msg)
+                    Toast(err.msg)
                 });
             }
         },

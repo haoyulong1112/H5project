@@ -4,7 +4,7 @@ import index from './index.vue'
 import '@/utils/favicon'
 import 'vant/lib/index.css';
 // import '@/utils/viewport'
-import { Toast,Popup } from 'vant';
+import { Toast, Popup } from 'vant';
 
 Vue.use(Popup);
 window.Toast = Toast;

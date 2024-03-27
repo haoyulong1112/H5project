@@ -1,5 +1,5 @@
 (function(window) {
-    let innerWidth = window.innerWidth;
+    let innerWidth = window.screen.width;
     let width = 1024;
     if(innerWidth<=414){
         width = 750;
