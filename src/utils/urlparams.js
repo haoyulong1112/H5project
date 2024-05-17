@@ -12,7 +12,7 @@ export default () => {
         let params = paramarr[1]
         // 去除#号
         const index = params.indexOf('%23/') !== -1 ? params.indexOf('%23/') : params.indexOf('#/')
-        if (index !== -1) params = params.substr(0, index)
+        if (index !== -1) params = params.substring(0, index)
         for (let i of params.split('&')) {
             const j = i.split('=')
             if (j[0]) ret[j[0]] = j[1] || ''
