@@ -8,23 +8,15 @@
             </div>
             <div class="tips">图解听力闯关，告别哑巴英语</div>
             <div class="mall_list">
-              <div>
+              <div v-for="(item, index) in mallList" :key="index" :class="selectIndex == index ? 'mall_item active' : 'mall_item'" @click="seclectMall(index)">
                 <div class="mall_title">
-                  《娃娃路-听懂英语》
+                  {{ item.title }}
                 </div>
-                <div class="mall_name">1年会员</div>
-                <div class="mall_discount">本周特惠：买一年送一年</div>
-                <div class="mall_desc">解锁1000词-2000句-9000句全部关卡</div>
-                <div class="mall_price">￥299</div>
-              </div>
-              <div>
-                <div class="mall_title">
-                  《娃娃路-听懂英语》
-                </div>
-                <div class="mall_name three">3年会员</div>
-                <div class="mall_discount">本周特惠：买三年送三年</div>
-                <div class="mall_desc">解锁1000词-2000句-9000句全部关卡</div>
-                <div class="mall_price three">￥799</div>
+                <div :class="index > 0 ? 'mall_name three' : 'mall_name'">{{item.name}}</div>
+                <div class="mall_discount">{{item.operationPosition}}</div>
+                <div class="mall_desc" v-if="index == 0">{{item.tag}}</div>
+                <div class="mall_desc" v-else>发金卡戴珊发快解散付款</div>
+                <div :class="index > 0 ? 'mall_price three' : 'mall_price'">￥{{item.price}}</div>
               </div>
             </div>
             <div class="instrtion">
@@ -36,8 +28,8 @@
               </div>
             </div>
         </div>
-        <div class="buyBtn">
-          ￥799立即购买
+        <div class="buyBtn" @click="buyFun">
+          ￥{{slectedPrice}}立即购买
         </div>
         <van-popup v-model="showPopup" position="center">
             <div class="pop_content">
@@ -55,6 +47,8 @@
 <script>
 import { getCheckCode, verifyRecommandCheckCode } from '@/api/202103/share'
 import md5 from 'js-md5';
+import wxcode from '@/utils/weixin/wxcode'
+import { getOpenId,getMall,createOrder } from '@/api/202103/share'
 
 import getParams from '@/utils/urlparams'
 import { Toast } from 'vant';
@@ -78,11 +72,33 @@ export default {
             canLogin: false,
             timesout: 2000,
             userId: '',
-            pageWidth
+            pageWidth,
+            mallList: [],
+            openId: 'oPGzTt3Xakd5R4KUDLWXy2PVN0OE',
+            selectIndex: 0,
+            slectedPrice: 0,
+            cellPhone: '17839193019',
+            payFlag: true
         };
     },
-    created () {
-        this.userId = params.userId
+    mounted() {
+        this.openId = localStorage.getItem('openId') ? localStorage.getItem('openId') : this.openId
+        // 获取code
+        const weixincode = params.code
+        if(!this.openId){
+          if(weixincode){
+            getOpenId({code: weixincode}).then(res =>{
+              console.log(res)
+              if(res.code == 200){
+                localStorage.setItem('openId', res.data.openid)
+                this.openId = res.data.openid;
+              }
+            })
+          }else{
+            wxcode()
+          }
+        }
+        this.getMallList();
         // if (typeof WeixinJSBridge == "undefined") {
         //   if (document.addEventListener) {
         //     document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
@@ -95,70 +111,82 @@ export default {
         // }
     },
     methods: {
-        onBridgeReady(){
-          WeixinJSBridge.invoke('getBrandWCPayRequest', {
-                "appId":  appId,   //公众号ID，由商户传入
-                "timeStamp": timeStamp,   //时间戳，自1970年以来的秒数
-                "nonceStr": timeStamp,      //随机串
-                "package": timeStamp,
-                "signType": timeStamp,     //微信签名方式：
-                "paySign": timeStamp
-              },
-              function (res) {
-                if ((res.errMsg || res.err_msg) === "get_brand_wcpay_request:ok") {
+        // 获取商品信息
+        getMallList(){
+          let data = {
+            type: 3
+          }
+          getMall(data).then(res => {
+            console.log(res)
+            if (res.code == 200) {
+              this.mallList = res.data
+              this.slectedPrice = this.mallList[0].price;
+            }
+          })
+        },
+        seclectMall(index){
+          this.selectIndex = index
+          this.slectedPrice = this.mallList[index].price;
+        },
+        buyFun(){
+          if(!this.payFlag){
+            return;
+          }
+          let mall = this.mallList[this.selectIndex];
+          let data = {
+            productId: mall.id,
+            openid: this.openId,
+            cellPhone: this.cellPhone,
+            payWay: 3,
+            price: mall.price,
+            dayNum: mall.dayNum
+          }
+          this.payFlag = false
+          createOrder(data).then(res => {
+
+            if (res.code == 200) {
+                let payData = res.data
+                console.log('payData',payData)
+                console.log('WeixinJSBridge',WeixinJSBridge)
+                if (typeof WeixinJSBridge == "undefined") {
+                    if (document.addEventListener) {
+                        document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady(payData), false);
+                    } else if (document.attachEvent) {
+                        document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady(payData));
+                        document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady(payData));
+                    }
+                } else {
+                    this.onBridgeReady(payData);
+                }
+            }
+          }).catch(err => {
+            console.log('err',err)
+            this.payFlag = true
+          })
+        },
+        onBridgeReady(payData) {
+            WeixinJSBridge.invoke('getBrandWCPayRequest', {
+              "appId":  payData.appId,   //公众号ID，由商户传入
+              "timeStamp": payData.timeStamp,   //时间戳，自1970年以来的秒数
+              "nonceStr": payData.nonceStr,      //随机串
+              "package": payData.package,
+              "signType": payData.signType,     //微信签名方式：
+              "paySign": payData.paySign
+            },
+            function(res) {
+                this.payFlag = true
+                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                  alert('支付成功');
                   // 使用以上方式判断前端返回,微信团队郑重提示：
                   //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
-
+                } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                  alert('支付取消');
+                } else if (res.err_msg == "get_brand_wcpay_request:fail") {
+                  alert('支付失败');
+                    // 使用以上方式判断前端返回,微信团队郑重提示：
+                    //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
                 }
-              }
-          );
-        },
-        getReword () {
-            if (!this.canLogin) {
-                return;
-            }
-            let data = {
-                checkCode: this.form.code,
-                phone: this.form.cellPhone,
-                userId: this.userId
-            }
-            verifyRecommandCheckCode(data).then(res => {
-                if (res.code == 200) {
-                    this.showPopup = true;
-                }
-            })
-        },
-        // 点击发送验证码按钮
-        getCode () {
-            if (!this.form.cellPhone) {
-                // this.shoetext = '手机号未填写';
-                Toast('手机号未填写')
-                return;
-            }
-            if (!phoneReg.test(this.form.cellPhone)) {
-                // this.shoetext = '手机号格式不正确';
-                // this.$refs.showtoast.showtime();
-                Toast('手机号格式不正确')
-                return;
-            }
-            if (this.codeType == 1) {
-                let data = {
-                    phone: this.form.cellPhone,
-                    encryptionCode: md5('wwl_version01' + this.form.cellPhone)
-                };
-                getCheckCode(data).then(res => {
-                    console.log(res);
-                    if (res.code == 200) {
-                        this.countdown();
-                        Toast('验证码已发送！')
-                    } else {
-                        Toast(res.msg)
-                    }
-                }).catch(err => {
-                    console.log(err)
-                    Toast(err.msg)
-                });
-            }
+            });
         },
     }
 };

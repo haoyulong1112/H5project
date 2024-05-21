@@ -16,10 +16,10 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '',
         proxyTable: {
-            // 开发环境通过本地node服务器桥接java接口，解决跨域 
+            // 开发环境通过本地node服务器桥接java接口，解决跨域
             '/test': {
                 // target: 'http://8.141.49.230:8200/',
-                target: 'https://api.huitingdata.com',
+                target: 'http://wx.wawalooo.com',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/test': ''

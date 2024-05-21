@@ -54,8 +54,8 @@ export default (options = {}) => {
             if (header.cellPhone) {
                 requestObj.setRequestHeader('cellPhone', header.cellPhone);
             }
-            if (header.type) {
-                requestObj.setRequestHeader('type', header.type);
+            if (options.headerType) {
+                requestObj.setRequestHeader('type', options.headerType);
             }
             requestObj.send(dataStr)
         } else {

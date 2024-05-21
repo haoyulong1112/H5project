@@ -27,7 +27,7 @@ export default (options = {}) => {
             ajaxArray.push(ajaxUrl)
         }
         ajax(options).then((res) => {
-            if (res.code === '200') {
+            if (res.code == '200') {
                 // code===0才会返回响应成功
                 resolve(res)
             } else if (res.errno === 0) {

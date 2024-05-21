@@ -21,17 +21,17 @@
         // 请求域名头 pet-pai
         // requestDomain: 'http://192.168.10.120:8200',
         //跨域
-        requestDomain: 'https://api.wawalu.cn/wawalu',
+        requestDomain: 'http://wx.wawalooo.com',
         // requestDomain: '/test',
     }
 
     var prodConfig = {
         // 请求域名头 pet-pai
-        requestDomain: 'https://api.wawalu.cn/wawalu',
+        requestDomain: 'https://api.wawalu.cn',
         // 分享appid
         // shareAppid: '',
         // 分享域名头
-        shareDomain: 'https://api.wawalu.cn/wawalu',
+        shareDomain: 'https://api.wawalu.cn',
         // 管理域名头
         manageDomain: ''
     }
@@ -58,7 +58,7 @@
     }
 
     // 通过hostname区分环境
-    var demoDomainArray = ['8.141.49.230','localhost']
+    var demoDomainArray = ['8.141.49.230','localhost','wx.wawalooo.com']
     var prodDomainArray = ['h5.wawalu.cn']
 
     var hostname = window.location.hostname
