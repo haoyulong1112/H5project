@@ -114,7 +114,7 @@ export default {
             console.log(this.canLogin)
         },
         // 点击发送验证码按钮
-        getCode () { 
+        getCode () {
             if(!this.form.cellPhone){
                 // this.shoetext = '手机号未填写';
                 Toast('手机号未填写')

@@ -19,6 +19,9 @@
                 <div :class="index > 0 ? 'mall_price three' : 'mall_price'">￥{{item.price}}</div>
               </div>
             </div>
+            <div :class="pageWidth == 750 ? 'userPhone' : 'userPhone big'">
+              <span>充值手机号：</span><input type="text" @blur="testPhone" maxlength="11" v-model="cellPhone" placeholder="请输入手机号">
+            </div>
             <div class="instrtion">
               <div class="instrt_title">
                 <span>充值说明</span>
@@ -31,7 +34,7 @@
         <div class="buyBtn" @click="buyFun">
           ￥{{slectedPrice}}立即购买
         </div>
-        <van-popup v-model="showPopup" position="center">
+        <!-- <van-popup v-model="showPopup" position="center">
             <div class="pop_content">
                 <img class="popup" src="~@static/images/202212/popup.png" alt="">
                 <div class="contentbox">
@@ -40,18 +43,18 @@
                     <div class="popup_download">下载app</div>
                 </div>
             </div>
-        </van-popup>
+        </van-popup> -->
     </div>
 </template>
 
 <script>
-import { getCheckCode, verifyRecommandCheckCode } from '@/api/202103/share'
-import md5 from 'js-md5';
 import wxcode from '@/utils/weixin/wxcode'
 import { getOpenId,getMall,createOrder } from '@/api/202103/share'
+import useragent from '@/utils/useragent.js';
 
 import getParams from '@/utils/urlparams'
 import { Toast } from 'vant';
+const weixin = useragent.weixin
 const params = getParams()
 const phoneReg = /^1[3|4|6|5|7|8|9][0-9]{9}$/;
 const pageWidth = config.pageWidth;
@@ -60,37 +63,26 @@ export default {
     data () {
         return {
             cellPhone: '',
-            code: '',
-            form: {
-                cellPhone: '',
-                code: ''
-            },
-            codeType: 1,
-            codeText: '获取验证码',
-            showPopup: false,
-            // 是否可以登录
-            canLogin: false,
-            timesout: 2000,
             userId: '',
             pageWidth,
             mallList: [],
-            openId: 'oPGzTt3Xakd5R4KUDLWXy2PVN0OE',
+            openId: '',
             selectIndex: 0,
             slectedPrice: 0,
-            cellPhone: '17839193019',
-            payFlag: true
+            payFlag: true,
+            phoneTest: false
         };
     },
     mounted() {
-        this.openId = localStorage.getItem('openId') ? localStorage.getItem('openId') : this.openId
+        this.openId = sessionStorage.getItem('openId') ? sessionStorage.getItem('openId') : this.openId
         // 获取code
         const weixincode = params.code
         if(!this.openId){
           if(weixincode){
             getOpenId({code: weixincode}).then(res =>{
-              console.log(res)
+              console.log('openId==========================',res)
               if(res.code == 200){
-                localStorage.setItem('openId', res.data.openid)
+                sessionStorage.setItem('openId', res.data.openid)
                 this.openId = res.data.openid;
               }
             })
@@ -99,18 +91,17 @@ export default {
           }
         }
         this.getMallList();
-        // if (typeof WeixinJSBridge == "undefined") {
-        //   if (document.addEventListener) {
-        //     document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-        //   } else if (document.attachEvent) {
-        //     document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-        //     document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-        //   }
-        // } else {
-        //   onBridgeReady();
-        // }
     },
     methods: {
+        // testPhone
+        testPhone(){
+          if(this.cellPhone && !phoneReg.test(this.cellPhone)){
+            this.phoneTest = false
+            Toast('请输入正确的手机号')
+            return;
+          }
+          this.phoneTest = true
+        },
         // 获取商品信息
         getMallList(){
           let data = {
@@ -129,6 +120,14 @@ export default {
           this.slectedPrice = this.mallList[index].price;
         },
         buyFun(){
+          if(!this.cellPhone){
+            Toast('请输入手机号')
+            return;
+          }
+          if(!this.phoneTest){
+            Toast('手机号格式错误，请重新输入')
+            return;
+          }
           if(!this.payFlag){
             return;
           }
@@ -141,9 +140,14 @@ export default {
             price: mall.price,
             dayNum: mall.dayNum
           }
+                console.log('data================',data)
           this.payFlag = false
+          if(!weixin){
+            this.payFlag = true;
+            Toast('请在微信中打开')
+            return;
+          }
           createOrder(data).then(res => {
-
             if (res.code == 200) {
                 let payData = res.data
                 console.log('payData',payData)
@@ -160,14 +164,21 @@ export default {
                 }
             }
           }).catch(err => {
+            Toast(err.msg)
             console.log('err',err)
             this.payFlag = true
           })
         },
         onBridgeReady(payData) {
+            if(payData == null || payData == undefined || JSON.stringify(payData) == "{}"){
+              Toast('支付失败');
+              this.payFlag = true
+              return;
+            }
+                console.log('payData+=====+========+======',payData.timeStamp)
             WeixinJSBridge.invoke('getBrandWCPayRequest', {
-              "appId":  payData.appId,   //公众号ID，由商户传入
-              "timeStamp": payData.timeStamp,   //时间戳，自1970年以来的秒数
+              "appId": payData.appId,   //公众号ID，由商户传入
+              "timeStamp": String(payData.timeStamp),   //时间戳，自1970年以来的秒数
               "nonceStr": payData.nonceStr,      //随机串
               "package": payData.package,
               "signType": payData.signType,     //微信签名方式：
