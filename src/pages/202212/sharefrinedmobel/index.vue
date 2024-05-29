@@ -39,9 +39,9 @@
                     <div :class="pageWidth == 750 ? 'small' : ''">
                         <img src="~@static/images/202212/Star.png" alt="">娃娃路是一个针对哑巴英语的图解听力练习APP
                     </div>
-                    <div :class="pageWidth == 750 ? 'small' : ''">
+                    <!-- <div :class="pageWidth == 750 ? 'small' : ''">
                         <img src="~@static/images/202212/Star.png" alt="">同时赠送双方各20积分
-                    </div>
+                    </div> -->
                     <div :class="pageWidth == 750 ? 'small' : ''">
                         <img src="~@static/images/202212/Star.png" alt="">注册后，应用商店搜“娃娃路”下载APP，用该手机号登录即用
                     </div>
@@ -107,6 +107,8 @@ export default {
                 if (res.code == 200) {
                     this.showPopup = true;
                 }
+            }).catch(err => {
+              Toast(err.msg)
             })
         },
         codeChcnge (e) {

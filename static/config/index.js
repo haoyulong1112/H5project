@@ -9,7 +9,6 @@
     let meta = document.querySelector('meta[name=viewport]');
 
     let content = `width=${width},init-scale=${scale}, user-scalable=no`;
-    console.log(1111,content)
     if(!meta){
         meta = document.createElement('meta');
         meta.setAttribute('name','viewport');
@@ -21,7 +20,7 @@
         // 请求域名头 pet-pai
         // requestDomain: 'http://192.168.10.120:8200',
         //跨域
-        requestDomain: 'http://wx.wawalooo.com',
+        requestDomain: 'https://wx.wawalooo.com',
         // requestDomain: '/test',
     }
 

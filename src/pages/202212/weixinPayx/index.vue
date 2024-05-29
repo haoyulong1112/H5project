@@ -58,6 +58,7 @@ const weixin = useragent.weixin
 const params = getParams()
 const phoneReg = /^1[3|4|6|5|7|8|9][0-9]{9}$/;
 const pageWidth = config.pageWidth;
+let payFlag = true;
 export default {
     name: 'index',
     data () {
@@ -69,12 +70,13 @@ export default {
             openId: '',
             selectIndex: 0,
             slectedPrice: 0,
-            payFlag: true,
             phoneTest: false
         };
     },
     mounted() {
         this.openId = sessionStorage.getItem('openId') ? sessionStorage.getItem('openId') : this.openId
+        console.log('this.openId===========',this.openId)
+        this.getMallList();
         // 获取code
         const weixincode = params.code
         if(!this.openId){
@@ -90,7 +92,6 @@ export default {
             wxcode()
           }
         }
-        this.getMallList();
     },
     methods: {
         // testPhone
@@ -120,6 +121,7 @@ export default {
           this.slectedPrice = this.mallList[index].price;
         },
         buyFun(){
+          console.log('this.payFlag ======',payFlag)
           if(!this.cellPhone){
             Toast('请输入手机号')
             return;
@@ -128,7 +130,7 @@ export default {
             Toast('手机号格式错误，请重新输入')
             return;
           }
-          if(!this.payFlag){
+          if(!payFlag){
             return;
           }
           let mall = this.mallList[this.selectIndex];
@@ -140,10 +142,9 @@ export default {
             price: mall.price,
             dayNum: mall.dayNum
           }
-                console.log('data================',data)
-          this.payFlag = false
+          payFlag = false
           if(!weixin){
-            this.payFlag = true;
+            payFlag = true;
             Toast('请在微信中打开')
             return;
           }
@@ -166,16 +167,16 @@ export default {
           }).catch(err => {
             Toast(err.msg)
             console.log('err',err)
-            this.payFlag = true
+            payFlag = true
           })
         },
         onBridgeReady(payData) {
             if(payData == null || payData == undefined || JSON.stringify(payData) == "{}"){
               Toast('支付失败');
-              this.payFlag = true
+              payFlag = true
               return;
             }
-                console.log('payData+=====+========+======',payData.timeStamp)
+            console.log('payData+=====+========+======',payData.timeStamp)
             WeixinJSBridge.invoke('getBrandWCPayRequest', {
               "appId": payData.appId,   //公众号ID，由商户传入
               "timeStamp": String(payData.timeStamp),   //时间戳，自1970年以来的秒数
@@ -183,9 +184,8 @@ export default {
               "package": payData.package,
               "signType": payData.signType,     //微信签名方式：
               "paySign": payData.paySign
-            },
-            function(res) {
-                this.payFlag = true
+            },(res) => {
+                payFlag = true
                 if (res.err_msg == "get_brand_wcpay_request:ok") {
                   alert('支付成功');
                   // 使用以上方式判断前端返回,微信团队郑重提示：
