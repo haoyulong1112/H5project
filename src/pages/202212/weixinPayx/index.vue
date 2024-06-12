@@ -8,14 +8,13 @@
             </div>
             <div class="tips">图解听力闯关，告别哑巴英语</div>
             <div class="mall_list">
-              <div v-for="(item, index) in mallList" :key="index" :class="selectIndex == index ? 'mall_item active' : 'mall_item'" @click="seclectMall(index)">
+              <div v-for="(item, index) in mallList" :key="index" :class="selectIndex == index && index == 0 ? 'mall_item active' :  selectIndex == index && index == 1 ? 'mall_item active2' : 'mall_item'" @click="seclectMall(index)">
                 <div class="mall_title">
                   {{ item.title }}
                 </div>
                 <div :class="index > 0 ? 'mall_name three' : 'mall_name'">{{item.name}}</div>
                 <div class="mall_discount">{{item.operationPosition}}</div>
-                <div class="mall_desc" v-if="index == 0">{{item.tag}}</div>
-                <div class="mall_desc" v-else>发金卡戴珊发快解散付款</div>
+                <div class="mall_desc">{{item.tag}}</div>
                 <div :class="index > 0 ? 'mall_price three' : 'mall_price'">￥{{item.price}}</div>
               </div>
             </div>

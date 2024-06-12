@@ -1,7 +1,8 @@
 (function(window) {
     let innerWidth = window.screen.width;
+    console.log('innerWidth',innerWidth)
     let width = 1024;
-    if(innerWidth<=414){
+    if(innerWidth<=430){
         width = 750;
     }
     const pageWidth = width;

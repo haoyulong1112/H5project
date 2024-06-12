@@ -2,6 +2,11 @@
         width: 100%;
         height: 100%;
     }
+    body {
+        -webkit-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
+        -moz-text-size-adjust: 100% !important;
+    }
     .container{
         width: 100%;
         height: 100%;
@@ -90,6 +95,9 @@
     .mall_item.active{
       border: 4px solid red;
     }
+    .mall_item.active2{
+      border: 4px solid orange;
+    }
     .mall_list >div:nth-child(1){
       background-color: orange
     }
@@ -160,8 +168,8 @@
       color: orange;
       line-height: 50px;
       text-align: center;
-      top: -2px;
-      right: -2px;
+      top: -4px;
+      right: -4px;
     }
     .mall_price.three{
       background-color: orange;

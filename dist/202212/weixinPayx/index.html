@@ -1,5 +1,24 @@
-<!DOCTYPE html><html><head><title>娃娃路邀请好友领取</title><meta charset=utf-8><meta name=sharetitle content="" id=js-p-share-tit><meta name=description content="" id=js-p-share-description><meta name=shareimg content="" id=js-p-share-img><meta name=shareurl content="" id=js-p-share-url><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=screen-orientation content=portrait><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=black><meta name=format-detection content="telephone=no"><meta http-equiv=X-UA-Compatible content=edge><meta name=full-screen content=yes><meta name=x5-fullscreen content=true><link rel="shortcut icon" type=image/x-icon href=../../../static/images/icons/favicon.ico media=screen><link rel=icon href="" size="16x16 32x32"><link href=static/css/app.a536ea3da279954411846d39ce2721b4.css rel=stylesheet></head><body><div id=app></div><script src=https://res.wx.qq.com/open/js/jweixin-1.6.0.js></script><script>var timestamp = new Date().getTime().toString()
+<!DOCTYPE html><html><head><title>购买会员</title><meta charset=utf-8><meta name=sharetitle content="" id=js-p-share-tit><meta name=description content="" id=js-p-share-description><meta name=shareimg content="" id=js-p-share-img><meta name=shareurl content="" id=js-p-share-url><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=screen-orientation content=portrait><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=black><meta name=format-detection content="telephone=no"><meta http-equiv=X-UA-Compatible content=edge><meta name=full-screen content=yes><meta name=x5-fullscreen content=true><link rel="shortcut icon" type=image/x-icon href=../../../static/images/icons/favicon.ico media=screen><link rel=icon href="" size="16x16 32x32"><link href=static/css/app.d0443edd4cf58a574d5255c239afbc95.css rel=stylesheet></head><body><div id=app></div><script src=https://res.wx.qq.com/open/js/jweixin-1.6.0.js></script><script>var timestamp = new Date().getTime().toString()
         timestamp = timestamp.substr(0, timestamp.length - 5)
-        document.write('<script src="../../../static/config/index.js?t='+timestamp+'"><\/script>')</script><script>if (config.vconsole) {
+        document.write('<script src="../../../static/config/index.js?t='+timestamp+'"><\/script>')</script><script>// 强制禁止用户修改微信客户端的字体大小
+      (function() {
+          if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+              handleFontSize();
+          } else {
+              if (document.addEventListener) {
+                  document.addEventListener("WeixinJSBridgeReady", handleFontSize, false);
+              } else if (document.attachEvent) {
+                  document.attachEvent("WeixinJSBridgeReady", handleFontSize);
+                  document.attachEvent("onWeixinJSBridgeReady", handleFontSize);  }
+          }
+          function handleFontSize() {
+              // 设置网页字体为默认大小
+              WeixinJSBridge.invoke('setFontSizeCallback', { 'fontSize' : 0 });
+              // 重写设置网页字体大小的事件
+              WeixinJSBridge.on('menu:setfont', function() {
+                  WeixinJSBridge.invoke('setFontSizeCallback', { 'fontSize' : 0 });
+              });
+          }
+      })();</script><script>if (config.vconsole) {
             document.write('<script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js"><\/script><script>new VConsole();console.log(location.href)<\/script>')
-        }</script><script type=text/javascript src=static/js/manifest.37a2ecbb1d1b7e6c9ada.js></script><script type=text/javascript src=static/js/vendor.3a9ecf568b20568b59a1.js></script><script type=text/javascript src=static/js/app.6b4489e1de143d7d3eff.js></script></body></html>
+        }</script><script type=text/javascript src=static/js/manifest.37a2ecbb1d1b7e6c9ada.js></script><script type=text/javascript src=static/js/vendor.3a9ecf568b20568b59a1.js></script><script type=text/javascript src=static/js/app.689c3fa74e8a7811fba2.js></script></body></html>

@@ -8,12 +8,12 @@
                 <span>邀请好友注册</span>
                 <img src="~@static/images/202212/right.png" alt="">
             </div>
-            <div class="tips">领取即送15天免费使用权同时赠送双方各20积分</div>
+            <div class="tips">领取即送15天免费使用权</div>
             <div :class="pageWidth == 750 ? 'formbox small' : 'formbox'">
                 <img class="formboxbgc" v-if="pageWidth == 1024" src="~@static/images/202212/red.png" alt="">
                 <img class="formboxbgc" v-else src="~@static/images/202212/red_small.png" alt="">
                 <img class="formboxboy" v-if="pageWidth == 1024" src="~@static/images/202212/boy.png" alt="">
-                <img class="formboxboy" style="right: -60px;" v-else src="~@static/images/202212/boy_small.png" alt="">
+                <!-- <img class="formboxboy" style="right: -60px;" v-else src="~@static/images/202212/boy_small.png" alt=""> -->
 
                 <div class="form">
                     <div :class="pageWidth == 750 ? 'formitem small' : 'formitem'">
