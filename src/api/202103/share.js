@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 let requestDomain = envConfig.requestDomain
-requestDomain = requestDomain ? requestDomain : 'https://wx.wawalooo.com'
+requestDomain = requestDomain ? requestDomain : 'https://api.wawalu.cn'
 // 获取验证码
 export const getCheckCode = data => {
     return request({

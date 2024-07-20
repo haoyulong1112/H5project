@@ -52,9 +52,9 @@
             <div class="pop_content">
                 <img class="popup" src="~@static/images/202212/popup.png" alt="">
                 <div class="contentbox">
-                    <div class="popup_title">恭喜您 注册成功</div>
-                    <!-- <div class="popup_gift">获得免费赠送20关</div> -->
-                    <div class="popup_download">下载app</div>
+                    <div class="popup_title">恭喜您注册成功</div>
+                    <div class="popup_gift">获得15天免费使用权</div>
+                    <!-- <div class="popup_download">下载app</div> -->
                 </div>
             </div>
         </van-popup>
