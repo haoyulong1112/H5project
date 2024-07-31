@@ -105,7 +105,12 @@ export default {
             }
             verifyRecommandCheckCode(data).then(res => {
                 if (res.code == 200) {
+                  if(res.data.isGift){
                     this.showPopup = true;
+                  }else{
+                    Toast('您的手机号已有过注册记录，不能领取奖励')
+                  }
+
                 }
             }).catch(err => {
               Toast(err.msg)
@@ -163,7 +168,7 @@ export default {
         countdown (cb) {
             // 倒计时
             this.countBackwards({
-                total: 60,
+                total: 180,
                 callback: (res) => {
                     if (res) {
                         this.codeText = res + '秒';
