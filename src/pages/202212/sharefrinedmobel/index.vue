@@ -108,7 +108,7 @@ export default {
                   if(res.data.isGift){
                     this.showPopup = true;
                   }else{
-                    Toast('您的手机号已有过注册记录，不能领取奖励')
+                    Toast('您的手机号已有过注册记录，不能参加此活动')
                   }
 
                 }
