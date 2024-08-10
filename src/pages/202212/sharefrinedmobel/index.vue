@@ -8,7 +8,7 @@
                 <span>邀请好友注册</span>
                 <img src="~@static/images/202212/right.png" alt="">
             </div>
-            <div class="tips">领取即送15天免费使用权</div>
+            <div class="tips">领取即送{{giveDay}}天免费使用权</div>
             <div :class="pageWidth == 750 ? 'formbox small' : 'formbox'">
                 <img class="formboxbgc" v-if="pageWidth == 1024" src="~@static/images/202212/red.png" alt="">
                 <img class="formboxbgc" v-else src="~@static/images/202212/red_small.png" alt="">
@@ -34,7 +34,7 @@
                 </div>
                 <div :class="pageWidth == 750 ? 'explain_content small' : 'explain_content'">
                     <div :class="pageWidth == 750 ? 'small' : ''">
-                        <img src="~@static/images/202212/Star.png" alt="">好友注册即可领取15天免费使用权
+                        <img src="~@static/images/202212/Star.png" alt="">好友注册即可领取{{giveDay}}天免费使用权
                     </div>
                     <div :class="pageWidth == 750 ? 'small' : ''">
                         <img src="~@static/images/202212/Star.png" alt="">娃娃路是一个针对哑巴英语的图解听力练习APP
@@ -53,7 +53,7 @@
                 <img class="popup" src="~@static/images/202212/popup.png" alt="">
                 <div class="contentbox">
                     <div class="popup_title">恭喜您注册成功</div>
-                    <div class="popup_gift">获得15天免费使用权</div>
+                    <div class="popup_gift">获得{{giveDay}}天免费使用权</div>
                     <!-- <div class="popup_download">下载app</div> -->
                 </div>
             </div>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { getCheckCode, verifyRecommandCheckCode } from '@/api/202103/share'
+import { getCheckCode, verifyRecommandCheckCode,getDay } from '@/api/202103/share'
 import md5 from 'js-md5';
 
 import getParams from '@/utils/urlparams'
@@ -87,11 +87,19 @@ export default {
             canLogin: false,
             timesout: 2000,
             userId: '',
-            pageWidth
+            pageWidth,
+            giveDay: 0
         };
     },
     created () {
         this.userId = params.userId
+        getDay().then(res => {
+          if(res.code == 200){
+            let day1 = res.data.recommand_gift_duration ? res.data.recommand_gift_duration : 0;
+            let day2 = res.data.first_login_gift_duration ? res.data.first_login_gift_duration : 0;
+            this.giveDay = day1+ day2;
+          }
+        })
     },
     methods: {
         getReword () {

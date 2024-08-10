@@ -19,9 +19,9 @@
     // 区分环境的配置 252 demo prod
     var demoConfig = {
         // 请求域名头 pet-pai
-        // requestDomain: 'https://api.wawalu.cn',
+        requestDomain: 'https://api.wawalu.cn',
         //跨域
-        requestDomain: 'https://wx.wawalooo.com',
+        // requestDomain: 'https://wx.wawalooo.com',
         // requestDomain: '/test',
     }
 

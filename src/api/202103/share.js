@@ -43,3 +43,12 @@ export const createOrder = data => {
       headerType: 1
   })
 }
+
+// 获取会员商品
+export const getDay = data => {
+  return request({
+      url: `${requestDomain}/wawalu/admin/queryH5DurationConfig`,
+      data: data,
+      type: 'get'
+  })
+}
