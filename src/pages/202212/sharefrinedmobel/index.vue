@@ -95,9 +95,8 @@ export default {
         this.userId = params.userId
         getDay().then(res => {
           if(res.code == 200){
-            let day1 = res.data.recommand_gift_duration ? res.data.recommand_gift_duration : 0;
-            let day2 = res.data.first_login_gift_duration ? res.data.first_login_gift_duration : 0;
-            this.giveDay = day1+ day2;
+            let day = res.data.recommand_gift_duration ? res.data.recommand_gift_duration : 0;
+            this.giveDay = day
           }
         })
     },
